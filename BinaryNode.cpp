@@ -33,3 +33,60 @@ class BinaryNode
     bool isLeaf() {
     return left == NULL && right == NULL;}
  };
+
+
+ //BinaryTree 클래스
+ class BinaryTree
+{
+    BinaryNode* root;
+
+    public:
+    //생성자
+    BinaryTree() : root(NULL){}
+
+    //소멸자 
+    ~BinaryTree(){}
+
+    void setRoot( BinaryNode* node) {root=node;}
+    BinaryNode* getRoot() {return root;}
+    bool isEmpty() { return root==NULL;}
+
+    //트리 작업
+    //노드개수
+    int getCount( BinaryNode* node){
+        if (node == NULL)
+            return 0;
+        
+            return 1
+        + getCount(node->getLeft())
+        + getCount(node->getRight());
+}
+
+    //단말노드 개수
+    int getLeafCount(BinaryNode* node) {
+    if (node == NULL)
+        return 0;
+
+    if (node->isLeaf())
+        return 1;
+
+    else
+        return getLeafCount(node->getLeft())
+             + getLeafCount(node->getRight());
+}
+
+    //트리 높이
+    int getHeight(BinaryNode* node){
+        if(node == NULL)
+            return 0;
+        int hLeft = getHeight(node->getLeft()); // 왼쪽 서브트리의 높이
+        int hRight = getHeight(node->getRight());  // 오른쪽 서브트리의 높이
+
+        if (hLeft > hRight) {
+             return 1 + hLeft;
+        }
+        else {
+             return 1 + hRight;
+        }
+    } 
+ };
