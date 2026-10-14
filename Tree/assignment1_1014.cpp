@@ -4,14 +4,14 @@ using namespace std;
 class BinaryNode
 {
 public:
-    //¸â¹ö º¯¼ö ¼±¾ğ
+    //ë©¤ë²„ ë³€ìˆ˜ ì„ ì–¸
     int data;
     BinaryNode* left;
     BinaryNode* right;
 
-    //»ı¼ºÀÚ
+    //ìƒì„±ì
     BinaryNode(
-        int val = 0, //³ëµå¿¡ ÀúÀåÇÒ °ª 
+        int val = 0, //ë…¸ë“œì— ì €ì¥í•  ê°’ 
         BinaryNode* l = NULL,
         BinaryNode* r = NULL
     )
@@ -20,7 +20,7 @@ public:
         right(r) {
     }
 
-    //¼Ò¸êÀÚ : °´Ã¼°¡ »ç¿ëÇÏ´ø ÀÚ¿øÀ» Á¤¸®ÇÏ±â À§ÇØ¼­ ÇÊ¿ä
+    //ì†Œë©¸ì : ê°ì²´ê°€ ì‚¬ìš©í•˜ë˜ ìì›ì„ ì •ë¦¬í•˜ê¸° ìœ„í•´ì„œ í•„ìš”
     ~BinaryNode() {}
 
     void setData(int val) { data = val; }
@@ -37,17 +37,17 @@ public:
 };
 
 
-//BinaryTree Å¬·¡½º
+//BinaryTree í´ë˜ìŠ¤
 class BinaryTree : public BinaryNode
 {
 public:
 
     BinaryNode* root;
 
-    //»ı¼ºÀÚ
+    //ìƒì„±ì
     BinaryTree() : root(NULL) {}
 
-    //¼Ò¸êÀÚ 
+    //ì†Œë©¸ì 
     ~BinaryTree() {}
 
     void setRoot(BinaryNode* node) { root = node; }
@@ -64,7 +64,7 @@ public:
             + getCount(node->getRight());
     }
 
-    //´Ü¸»³ëµå °³¼ö
+    //ë‹¨ë§ë…¸ë“œ ê°œìˆ˜
     int getLeafCount(BinaryNode* node) {
         if (node == NULL)
             return 0;
@@ -77,12 +77,12 @@ public:
             + getLeafCount(node->getRight());
     }
 
-    //Æ®¸® ³ôÀÌ
+    //íŠ¸ë¦¬ ë†’ì´
     int getHeight(BinaryNode* node) {
         if (node == NULL)
             return 0;
-        int hLeft = getHeight(node->getLeft()); // ¿ŞÂÊ ¼­ºêÆ®¸®ÀÇ ³ôÀÌ
-        int hRight = getHeight(node->getRight());  // ¿À¸¥ÂÊ ¼­ºêÆ®¸®ÀÇ ³ôÀÌ
+        int hLeft = getHeight(node->getLeft()); // ì™¼ìª½ ì„œë¸ŒíŠ¸ë¦¬ì˜ ë†’ì´
+        int hRight = getHeight(node->getRight());  // ì˜¤ë¥¸ìª½ ì„œë¸ŒíŠ¸ë¦¬ì˜ ë†’ì´
 
         if (hLeft > hRight) {
             return 1 + hLeft;
@@ -106,7 +106,7 @@ public:
 };
 
 
-//BST Å¬·¡½º
+//BST í´ë˜ìŠ¤
 class BST : public BinaryTree
 {
 public:
@@ -122,15 +122,15 @@ public:
     void inorder(BinaryNode* n);
 };
 
-//¸Å°³º¯¼ö ¾ø´Â ¹öÀü(È£Ãâ¿ë
+//ë§¤ê°œë³€ìˆ˜ ì—†ëŠ” ë²„ì „(í˜¸ì¶œìš©
 BinaryNode* BST::search(int key) {
 
     BinaryNode* node = search(getRoot(), key);
 
     if (node != NULL)
-        cout << "Å½»ö ¼º°ø : Å° °ªÀÌ " << node->getData() << " ÀÎ ³ëµå = 0x " << node << endl;
+        cout << "íƒìƒ‰ ì„±ê³µ : í‚¤ ê°’ì´ " << node->getData() << " ì¸ ë…¸ë“œ = 0x " << node << endl;
     else
-        cout << "Å½»ö ½ÇÆĞ : Å° °ªÀÌ " << key << "ÀÎ ³ëµå ¾øÀ½" << endl;
+        cout << "íƒìƒ‰ ì‹¤íŒ¨ : í‚¤ ê°’ì´ " << key << "ì¸ ë…¸ë“œ ì—†ìŒ" << endl;
 
     return node;
 }
@@ -159,10 +159,10 @@ void BST::insert(BinaryNode* n) {
         insert(getRoot(), n);
 }
 
-//r = ÇöÀç ºñ±³ÇÏ°í ÀÖ´Â ³ëµå
-//n = »õ·Î »ğÀÔÇÏ·Á´Â ³ëµå
+//r = í˜„ì¬ ë¹„êµí•˜ê³  ìˆëŠ” ë…¸ë“œ
+//n = ìƒˆë¡œ ì‚½ì…í•˜ë ¤ëŠ” ë…¸ë“œ
 void BST::insert(BinaryNode* r, BinaryNode* n) {
-    //Áßº¹ ³ëµå ÀÖ´ÂÁö È®ÀÎ
+    //ì¤‘ë³µ ë…¸ë“œ ìˆëŠ”ì§€ í™•ì¸
     if (n->getData() == r->getData())
         return;
 
@@ -198,7 +198,7 @@ void BST::remove(int key) {
     }
 
     if (node == NULL) {
-        cout << "»èÁ¦ÇÒ ³ëµå°¡ ¾ø½À´Ï´Ù." << endl;
+        cout << "ì‚­ì œí•  ë…¸ë“œê°€ ì—†ìŠµë‹ˆë‹¤." << endl;
         return;
     }
 
@@ -213,7 +213,7 @@ void BST::remove(BinaryNode* parent, BinaryNode* n) {
 
     BinaryNode* child;
 
-    // case 1: »èÁ¦ÇÏ·Á´Â ³ëµå°¡ ¸®ÇÁ ³ëµåÀÎ °æ¿ì
+    // case 1: ì‚­ì œí•˜ë ¤ëŠ” ë…¸ë“œê°€ ë¦¬í”„ ë…¸ë“œì¸ ê²½ìš°
     if (n->isLeaf()) {
         if (parent == NULL)
             root = NULL;
@@ -225,7 +225,7 @@ void BST::remove(BinaryNode* parent, BinaryNode* n) {
         }
     }
 
-    // case 2: »èÁ¦ÇÏ·Á´Â ³ëµå°¡ ÀÚ½ÄÀ» ÇÏ³ª¸¸ °¡Áø °æ¿ì
+    // case 2: ì‚­ì œí•˜ë ¤ëŠ” ë…¸ë“œê°€ ìì‹ì„ í•˜ë‚˜ë§Œ ê°€ì§„ ê²½ìš°
     else if (n->getLeft() == NULL || n->getRight() == NULL) {
 
         if (n->getLeft() != NULL)
@@ -243,7 +243,7 @@ void BST::remove(BinaryNode* parent, BinaryNode* n) {
         }
     }
 
-    // case 3: »èÁ¦ÇÏ·Á´Â ³ëµå°¡ ÀÚ½ÄÀ» µÎ °³ °¡Áø °æ¿ì
+    // case 3: ì‚­ì œí•˜ë ¤ëŠ” ë…¸ë“œê°€ ìì‹ì„ ë‘ ê°œ ê°€ì§„ ê²½ìš°
     else {
         BinaryNode* succp = n;
         BinaryNode* succ = n->getRight();
@@ -280,10 +280,10 @@ int main()
 
     BST tree;
     int N;
-    // °¹¼ö
+    // ê°¯ìˆ˜
     char op;
     int number;
-    // ¿¬»êÀÚ I, D
+    // ì—°ì‚°ì I, D
     cin >> N;
     for (int i = 0; i < N; i++)
     {
